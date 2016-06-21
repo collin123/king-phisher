@@ -34,9 +34,11 @@ import datetime
 import operator
 
 from king_phisher import errors
+from king_phisher.server import signals
 from king_phisher.utilities import switch
 
 import sqlalchemy
+import sqlalchemy.event
 import sqlalchemy.ext.declarative
 import sqlalchemy.orm
 
@@ -72,13 +74,17 @@ def get_tables_with_column_id(column_id):
 def register_table(table):
 	"""
 	Register a database table. This will populate the information provided in
-	DATABASE_TABLES dictionary.
+	DATABASE_TABLES dictionary. This also forwards signals to the appropriate
+	listeners within the :py:mod:`server.signal` module.
 
 	:param cls table: The table to register.
 	"""
 	columns = tuple(col.name for col in table.__table__.columns)
 	database_tables[table.__tablename__] = columns
 	database_table_objects[table.__tablename__] = table
+	for event in ('delete', 'insert', 'update'):
+		signal = getattr(signals, "db_{0}_{1}".format(table.__tablename__, event), None)
+		sqlalchemy.event.listen(table, 'before_' + event, lambda mapper, con, target: signal.send(target, mapper=mapper, connection=con))
 	return table
 
 class BaseRowCls(object):

@@ -32,6 +32,41 @@
 
 import blinker
 
+# database signals
+db_authenticated_sessions_delete = blinker.NamedSignal(
+	'db-authenticated-sessions-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.AuthenticatedSessions`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_authenticated_sessions_insert = blinker.NamedSignal(
+	'db-authenticated-sessions-insert'
+)
+
+db_authenticated_sessions_update = blinker.NamedSignal(
+	'db-authenticated-sessions-update'
+)
+
+db_users_delete = blinker.NamedSignal(
+	'db-users-delete'
+)
+
+db_users_insert = blinker.NamedSignal(
+	'db-users-insert'
+)
+
+db_users_update = blinker.NamedSignal(
+	'db-users-update'
+)
+
 # server signals
 server_initialized = blinker.NamedSignal(
 	'server-initialized',
