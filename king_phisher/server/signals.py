@@ -33,6 +33,48 @@
 import blinker
 
 # database signals
+db_alert_subscriptions_delete = blinker.NamedSignal(
+	'db-alert-subscriptions-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.AlertSubscriptions`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_alert_subscriptions_insert = blinker.NamedSignal(
+	'db-alert-subscriptions-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.AlertSubscriptions`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_alert_subscriptions_update = blinker.NamedSignal(
+	'db-alert-subscriptions-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.AlertSubscriptions`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
 db_authenticated_sessions_delete = blinker.NamedSignal(
 	'db-authenticated-sessions-delete',
 	"""
@@ -46,13 +88,577 @@ db_authenticated_sessions_delete = blinker.NamedSignal(
 	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
 	"""
 )
-
 db_authenticated_sessions_insert = blinker.NamedSignal(
 	'db-authenticated-sessions-insert'
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.AuthenticatedSessions`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
 )
 
 db_authenticated_sessions_update = blinker.NamedSignal(
 	'db-authenticated-sessions-update'
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.AuthenticatedSessions`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+
+db_campaign_delete = blinker.NamedSignal(
+	'db-campaign-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Campaign`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+db_campaign_insert = blinker.NamedSignal(
+	'db-campaign-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Campaign`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_campaign_update = blinker.NamedSignal(
+	'db-campaign-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Campaign`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_campaign_type_delete = blinker.NamedSignal(
+	'db-campaign-type-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.CampaignType`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+db_campaign_type_insert = blinker.NamedSignal(
+	'db-campaign-type-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.CampaignType`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_campaign_type_update = blinker.NamedSignal(
+	'db-campaign-type-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.CampaignType`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_company_delete = blinker.NamedSignal(
+	'db-company-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Company`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_company_insert = blinker.NamedSignal(
+	'db-company-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Company`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_company_update = blinker.NamedSignal(
+	'db-company-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Company`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_company_department_delete = blinker.NamedSignal(
+	'db-company-department-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.CompanyDepartment`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_company_department_insert = blinker.NamedSignal(
+	'db-company-department-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.CompanyDepartment`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_company_department_update = blinker.NamedSignal(
+	'db-company-department-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.CompanyDepartment`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_credential_delete = blinker.NamedSignal(
+	'db-credential-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Credential`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_credential_insert = blinker.NamedSignal(
+	'db-credential-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Credential`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_credential_update = blinker.NamedSignal(
+	'db-credential-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Credential`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_deaddrop_deployment_delete = blinker.NamedSignal(
+	'db-deaddrop-deployment-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.DeaddropDeployment`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_deaddrop_deployment_insert = blinker.NamedSignal(
+	'db-deaddrop-deployment-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.DeaddropDeployment`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_deaddrop_deployment_update = blinker.NamedSignal(
+	'db-deaddrop-deployment-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.DeaddropDeployment`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_deaddrop_connection_delete = blinker.NamedSignal(
+	'db-deaddrop-connection-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.DeaddropConnection`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_deaddrop_connection_insert = blinker.NamedSignal(
+	'db-deaddrop-connection-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.DeaddropConnection`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_deaddrop_connection_update = blinker.NamedSignal(
+	'db-deaddrop-connection-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.DeaddropConnection`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_industry_delete = blinker.NamedSignal(
+	'db-industry-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Industry`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_industry_insert = blinker.NamedSignal(
+	'db-industry-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Industry`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_industry_update = blinker.NamedSignal(
+	'db-industry-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Industry`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_landing_page_delete = blinker.NamedSignal(
+	'db-landing-page-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.LandingPage`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_landing_page_insert = blinker.NamedSignal(
+	'db-landing-page-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.LandingPage`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_landing_page_update = blinker.NamedSignal(
+	'db-landing-page-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.LandingPage`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_message_delete = blinker.NamedSignal(
+	'db-message-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Message`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_message_insert = blinker.NamedSignal(
+	'db-message-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Message`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_message_update = blinker.NamedSignal(
+	'db-message-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Message`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_meta_data_delete = blinker.NamedSignal(
+	'db-meta-data-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.MetaData`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_meta_data_insert = blinker.NamedSignal(
+	'db-meta-data-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.MetaData`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_meta_data_update = blinker.NamedSignal(
+	'db-meta-data-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.MetaData`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_user_delete = blinker.NamedSignal(
+	'db-user-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.User`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_user_insert = blinker.NamedSignal(
+	'db-user-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.User`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_user_update = blinker.NamedSignal(
+	'db-user-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.User`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_user_delete = blinker.NamedSignal(
+	'db-user-delete',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.User`
+	instance is deleted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_visit_insert = blinker.NamedSignal(
+	'db-visit-insert',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Visit`
+	instance is inserted.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
+)
+
+db_visit_update = blinker.NamedSignal(
+	'db-visit-update',
+	"""
+	Emitted before a
+	:py:class:`~king_phisher.server.server.database.models.Visit`
+	instance is updated.
+
+	:param target: The target object instance.
+	:param connection: The SQLAlchemy connection object which is being used to emit the SQL statements for the instance.
+	:param mapper: The Mapper object which is the target of the event.
+	:type mapper: :py:class:`sqlalchemy.orm.mapper.Mapper`
+	"""
 )
 
 db_users_delete = blinker.NamedSignal(
